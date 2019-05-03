@@ -133,6 +133,6 @@ console.log (questions);
 for (let i=0; i<NUMBER_OF_QUESTIONS_DISPLAYED; i++) {
     let questionId = "#question-" + i
     $(questionId).html(questions[i].question + " True or False?");
-    questionId.append($("<input>"));
+    // questionId.append($('<input type="radio" name="rbtnCount" />'));
 
 };
