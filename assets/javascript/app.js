@@ -108,11 +108,8 @@ testBank = [
     "False"
     ]
     }
- ]
+ ];
     
- console.log(testBank);
-
-
 
 //Fisher-Yates Shuffle
 function shuffle(a) {
@@ -122,7 +119,7 @@ function shuffle(a) {
     }
     return a;
 }
-
+//randomize and select qustions from bank
 shuffle(testBank);
 
 for (let i=0; i<NUMBER_OF_QUESTIONS_DISPLAYED; i++) {
@@ -130,7 +127,6 @@ for (let i=0; i<NUMBER_OF_QUESTIONS_DISPLAYED; i++) {
     questions.push(testBank[i]);
 }
 
-console.log (questions);
 
 //add questions to DOM
 for (let i=0; i<NUMBER_OF_QUESTIONS_DISPLAYED; i++) {
@@ -141,6 +137,7 @@ for (let i=0; i<NUMBER_OF_QUESTIONS_DISPLAYED; i++) {
 //set up time remaining
 $("#time-remaining").text("Time Remaining: " + SECONDS_ALLOWED);
 
+//create timer
 intervalId = setInterval(tick, 1000);
 
 function tick() {
@@ -149,25 +146,21 @@ function tick() {
         $("#time-remaining").text("Time Remaining: " + count);
     }
 
-
-    console.log(count);
-
 }
 
+//game over logic
 let gameOverTimer = setTimeout(function() {
     gameOver();
     }, (SECONDS_ALLOWED + 1) * 1000);
-
+   
 function gameOver() {
     let numberCorrect = 0;
-    $("#time-remaining").text("Game Over!");
-
+    
     for (let i=0; i<NUMBER_OF_QUESTIONS_DISPLAYED; i++) { 
         let radioSelector = ($("input[name=question-" + i + "]:checked"));
         let radioValue = radioSelector.val();
-        console.log(radioValue);
+
         if (radioValue === questions[i].correct_answer.toLowerCase()){
-            console.log("q " + questions[i].correct_answer)
             numberCorrect++;
             $("#question-" + i).css("color", "green");
         }
@@ -176,5 +169,7 @@ function gameOver() {
         }
     };
 
-    console.log("number correct " + numberCorrect);
+    $("#time-remaining").text("Game Over! You got " + numberCorrect + " right answers!");
+
+
 }
