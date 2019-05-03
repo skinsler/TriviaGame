@@ -1,5 +1,5 @@
 const NUMBER_OF_QUESTIONS_DISPLAYED = 3;
-const SECONDS_ALLOWED = 10;
+const SECONDS_ALLOWED = 20;
 
 let questions = [];
 let count = SECONDS_ALLOWED;
