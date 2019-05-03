@@ -1,6 +1,9 @@
-const NUMBER_OF_QUESTIONS_DISPLAYED = 3
+const NUMBER_OF_QUESTIONS_DISPLAYED = 3;
+const SECONDS_ALLOWED = 10;
 
 let questions = [];
+let count = SECONDS_ALLOWED;
+
 
 
 //questions from https://opentdb.com/
@@ -109,7 +112,7 @@ testBank = [
     
  console.log(testBank);
 
- //select questions
+
 
 //Fisher-Yates Shuffle
 function shuffle(a) {
@@ -133,6 +136,19 @@ console.log (questions);
 for (let i=0; i<NUMBER_OF_QUESTIONS_DISPLAYED; i++) {
     let questionId = "#question-" + i
     $(questionId).html(questions[i].question + " True or False?");
-    // questionId.append($('<input type="radio" name="rbtnCount" />'));
-
 };
+
+//set up time remaining
+$("#time-remaining").text("Time Remaining: " + SECONDS_ALLOWED);
+
+intervalId = setInterval(tick, 1000);
+
+function tick() {
+    if (count > 0) {
+        count--
+    }
+
+    $("#time-remaining").text("Time Remaining: " + count);
+    console.log(count);
+
+}
