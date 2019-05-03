@@ -159,10 +159,22 @@ let gameOverTimer = setTimeout(function() {
     }, (SECONDS_ALLOWED + 1) * 1000);
 
 function gameOver() {
+    let numberCorrect = 0;
     $("#time-remaining").text("Game Over!");
 
     for (let i=0; i<NUMBER_OF_QUESTIONS_DISPLAYED; i++) { 
-        console.log($("input[name=question-" + i + "]:checked").val());
+        let radioSelector = ($("input[name=question-" + i + "]:checked"));
+        let radioValue = radioSelector.val();
+        console.log(radioValue);
+        if (radioValue === questions[i].correct_answer.toLowerCase()){
+            console.log("q " + questions[i].correct_answer)
+            numberCorrect++;
+            $("#question-" + i).css("color", "green");
+        }
+        else {
+            $("#question-" + i).css("color", "red");
+        }
     };
 
+    console.log("number correct " + numberCorrect);
 }
