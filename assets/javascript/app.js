@@ -146,9 +146,23 @@ intervalId = setInterval(tick, 1000);
 function tick() {
     if (count > 0) {
         count--
+        $("#time-remaining").text("Time Remaining: " + count);
     }
 
-    $("#time-remaining").text("Time Remaining: " + count);
+
     console.log(count);
+
+}
+
+let gameOverTimer = setTimeout(function() {
+    gameOver();
+    }, (SECONDS_ALLOWED + 1) * 1000);
+
+function gameOver() {
+    $("#time-remaining").text("Game Over!");
+
+    for (let i=0; i<NUMBER_OF_QUESTIONS_DISPLAYED; i++) { 
+        console.log($("input[name=question-" + i + "]:checked").val());
+    };
 
 }
